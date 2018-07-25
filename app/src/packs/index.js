@@ -1,8 +1,15 @@
 import Phaser from 'phaser'
-import SimpleScene from '../scenes/simple-scene'
+import GameScene from '../scenes/game-scene'
 
 const game = new Phaser.Game({
-  width: 680,
-  height: 400,
-  scene: SimpleScene
+  width: 800,
+  height: 600,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 300 },
+      debug: false
+    }
+  },
+  scene: GameScene
 })
