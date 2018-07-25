@@ -11,7 +11,8 @@ Vagrant.configure('2') do |config|
   config.ssh.insert_key = false
   config.vm.box = 'debian/contrib-jessie64'
   config.vm.hostname = name
-  config.vm.synced_folder './app', '/vagrant', type: 'virtualbox'
+  config.vm.synced_folder './a-modern-web-development-setup-for-phaser-3', '/vagrant/a-modern-web-development-setup-for-phaser-3', type: 'virtualbox'
+  config.vm.synced_folder './making-your-first-phaser-3-game', '/vagrant/making-your-first-phaser-3-game', type: 'virtualbox'
   config.vm.provider :virtualbox do |v|
     v.name = name
     v.memory = 1024
@@ -25,6 +26,7 @@ Vagrant.configure('2') do |config|
     v.customize [ 'guestproperty', 'set', :id, '--timesync-threshold', 5000 ]
   end
   config.vm.network 'forwarded_port', guest: 8080, host: 8080
+  config.vm.network 'forwarded_port', guest: 8081, host: 8081
   config.vm.provision 'shell', path: './vagrant-scripts/update.sh'
   config.vm.provision :reload
   config.vm.provision 'shell', path: './vagrant-scripts/provision.sh'
